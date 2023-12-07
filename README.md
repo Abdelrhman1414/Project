@@ -54,41 +54,43 @@ cd ../client
 npm start
 Open your web browser and navigate to http://localhost:3000 to access the mobile website.
 
-## Usage<a name="usage"></a>
+## Usage
+
 Welcome to our mobile website! Here's a guide on how to use the various features and functionalities:
 
-1. Home Page
-Upon accessing the mobile  market website, you will land on the home page. Here, you can find a brief overview of the site's purpose and navigation options.
+1. **Home Page:**
+   Upon accessing the mobile market website, you will land on the home page. Here, you can find a brief overview of the site's purpose and navigation options.
 
-2. User Authentication
-To access personalized features, you may need to log in or sign up. Use the provided login or registration form to create an account or log in if you already have one.
+2. **User Authentication:**
+   To access personalized features, you may need to log in or sign up. Use the provided login or registration form to create an account or log in if you already have one.
 
-3. Navigation Menu
-Explore different sections of the mobile  market website using the navigation menu. It typically includes options like:
+3. **Navigation Menu:**
+   Explore different sections of the mobile market website using the navigation menu. It typically includes options like:
+   - **Home:** Navigate back to the home page.
+   - **Profile:** Access your user profile and update information.
+   - **Content Categories:** Explore various categories relevant to the website's content.
 
-Home: Navigate back to the home page.
-Profile: Access your user profile and update information.
-Content Categories: Explore various categories relevant to the website's content.
-4. Dynamic Content
-Interact with dynamic content that updates in real-time. This could include:
+4. **Dynamic Content:**
+   Interact with dynamic content that updates in real-time. This could include:
+   - **News Feed:** Stay updated with the latest information in your area of interest.
+   - **Interactive Tools:** Utilize any interactive tools or features available on the website.
 
-News Feed: Stay updated with the latest information in your area of interest.
-Interactive Tools: Utilize any interactive tools or features available on the website.
-5. Responsive Design
-Our mobile  market is designed to provide a seamless experience on a variety of devices. Whether you're using a smartphone or tablet, the site adapts to your screen size for optimal usability.
+5. **Responsive Design:**
+   Our mobile market is designed to provide a seamless experience on a variety of devices. Whether you're using a smartphone or tablet, the site adapts to your screen size for optimal usability.
 
-6. User Profile
- the website includes user profiles, you can:
+6. **User Profile:**
+   If the website includes user profiles, you can:
+   - **View/Edit Profile:** Access and update your profile information.
+   - **History or Saved Items:** Check your activity history or saved items, if applicable.
 
-View/Edit Profile: Access and update your profile information.
-History or Saved Items: Check your activity history or saved items, if applicable.
-7. Logout
-When you're done using the website, make sure to log out for security purposes. Look for a "Logout" option in the menu or profile section.
+7. **Logout:**
+   When you're done using the website, make sure to log out for security purposes. Look for a "Logout" option in the menu or profile section.
 
-8. Feedback and Support
-If you encounter issues or have suggestions, there may be a feedback or support option. Feel free to provide your input to help improve the website.
+8. **Feedback and Support:**
+   If you encounter issues or have suggestions, there may be a feedback or support option. Feel free to provide your input to help improve the website.
 
 Enjoy using our mobile website! If you have any questions or need assistance, don't hesitate to reach out to our support team.
+
 
 ## **Technologies Used**
 

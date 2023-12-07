@@ -1,7 +1,7 @@
 
-# Mobile Market - MERN Stack Project
+# **Mobile Website - MERN Stack Project**
 
-# Project Overview
+## **Project Overview**
 This mobile market is a collaborative effort by the students of the Faculty of Science at Cairo University. this project utilizes the MERN (MongoDB, Express.js, React.js, Node.js) stack to create a dynamic and responsive mobile web application.
 
 # Table of Contents
@@ -90,8 +90,6 @@ If you encounter issues or have suggestions, there may be a feedback or support 
 
 Enjoy using our mobile website! If you have any questions or need assistance, don't hesitate to reach out to our support team.
 
-## Technologies Used<a name="technologies-used"></a>
-1. MongoDB
-2. Express.js
-3. React.js
-4. Node.js
+## **Technologies Used**
+
+- MongoDB, Express.js, React.js, Node.js

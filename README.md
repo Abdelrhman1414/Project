@@ -3,20 +3,23 @@ Mobile Market - MERN Stack Project
 Project Overview
 This mobile market is a collaborative effort by the students of the Faculty of Science at Cairo University. this project utilizes the MERN (MongoDB, Express.js, React.js, Node.js) stack to create a dynamic and responsive mobile web application.
 
-Table of Contents
-Features
-Installation
-Usage
-Technologies Used
+# Table of Contents
+
+1. [Features](#features)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [Technologies Used](#technologies-used)
 
 
-Features<a name="features"></a>
+
+## Features<a name="features"></a>
 Dynamic Content: Utilize the power of React.js to create a smooth and interactive user experience.
 Backend with Express.js: Develop a robust backend using Express.js to handle server-side operations.
 Database with MongoDB: Employ MongoDB to store and manage data efficiently.
 Responsive Design: Ensure a seamless experience across various mobile devices with a mobile-first approach.
 User Authentication: Implement user authentication to secure access to specific features.
-Installation<a name="installation"></a>
+
+## Installation<a name="installation"></a>
 Clone the Repository:
 
 bash
@@ -50,7 +53,7 @@ cd ../client
 npm start
 Open your web browser and navigate to http://localhost:3000 to access the mobile website.
 
-Usage<a name="usage"></a>
+## Usage<a name="usage"></a>
 Welcome to our mobile website! Here's a guide on how to use the various features and functionalities:
 
 1. Home Page
@@ -86,7 +89,7 @@ If you encounter issues or have suggestions, there may be a feedback or support 
 
 Enjoy using our mobile website! If you have any questions or need assistance, don't hesitate to reach out to our support team.
 
-Technologies Used<a name="technologies-used"></a>
+## Technologies Used<a name="technologies-used"></a>
 MongoDB
 Express.js
 React.js

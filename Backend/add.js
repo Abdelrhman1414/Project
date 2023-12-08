@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const mongouri = "mongodb://localhost:27017/lab3db" 
 const app = express()
 const bcrypt = require("bcryptjs")
-const productRouter = require("./routes.js/productRoutes")
+const productRouter = require("./routes/productRoutes")
 // const Job = require('./models/job.model')
 // const JobApplied = require('./models/jobApplied,model');
 app.use(express.json())

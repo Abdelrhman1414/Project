@@ -5,6 +5,14 @@ const asyncHandler=require('express-async-handler')
 
 const createUser= asyncHandler (async(req,res)=>{
 const email=req.body.email;
+
+if (!isValidEmail(email)) {
+  return res.status(400).json({ error: 'Invalid email format' });
+}
+
+else{
+
+
 const findUser=await User.findOne({email:email});
 if (!findUser) {
 
@@ -14,7 +22,23 @@ if (!findUser) {
     
     throw new Error("User Already Exists");
   }
+}
+
 }); 
+
+
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+
+
+
+
+
+
+
 
 const loginUserCtrl = asyncHandler(async (req, res) => {
     const { email, password } = req.body;

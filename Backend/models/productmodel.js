@@ -9,7 +9,7 @@ title : {
     trim: true
 
 },
-category : {
+brand : {
     required: true,
     type: String,
 },

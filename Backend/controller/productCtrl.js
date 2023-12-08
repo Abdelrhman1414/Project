@@ -45,7 +45,7 @@ const updateProduct = asyncHandler(async(req,res) =>{
     const product = await Product.findById(id);
     if(product){
         if(newProduct.title){product.title=newProduct.title};
-        if(newProduct.category){product.category=newProduct.category};
+        if(newProduct.brand){product.brand=newProduct.brand};
         if(newProduct.price){product.price=newProduct.price};
         if(newProduct.description){product.description=newProduct.description};
         if(newProduct.countInst){product.countInst=newProduct.countInst};

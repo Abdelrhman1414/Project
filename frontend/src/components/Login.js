@@ -74,11 +74,11 @@ const Login = () => {
         </div>
       </form>
       <div style={styles.bottomLinks}>
-        <p>
+        {/* <p>
           <a href="#forgot-password" style={styles.link}>
             Forgot password?
           </a>
-        </p>
+        </p> */}
         <p>
           Don't have an account?{' '}
           <a href="#sign-up" style={styles.link}>

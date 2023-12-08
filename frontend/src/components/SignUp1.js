@@ -5,6 +5,7 @@ const SignUp1 = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
+    mobileNumber: '',
     email: '',
     password: '',
   });
@@ -41,6 +42,17 @@ const SignUp1 = () => {
             type="text"
             name="lastName"
             value={formData.lastName}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Mobile Number:
+          <input
+            type="tel"
+            name="mobileNumber"
+            value={formData.mobileNumber}
             onChange={handleChange}
             required
           />

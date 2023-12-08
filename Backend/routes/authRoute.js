@@ -7,6 +7,6 @@ router.post('/register',createUser);
 router.post('/login',loginUserCtrl);
 router.get('/allusers',authMiddleware,isAdmin,getallUser);
 router.get('/:id',authMiddleware,isAdmin,getaUser);
-router.delete('/:id',deleteaUser);
+router.delete('/:id',authMiddleware,isAdmin,deleteaUser);
 router.put('/edituser',authMiddleware,updatedUser);
 module.exports=router;

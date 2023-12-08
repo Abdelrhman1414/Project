@@ -14,6 +14,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Profile from "./components/Profile.js";
 import AddToCart from "./components/Cart.js";
+import Login from "./components/Login.js"
+import SignUp1 from "./components/SignUp1.js";
 import SearchComponent from "./components/SearchComponent.js";
 const theme = createTheme();
 
@@ -38,23 +40,24 @@ function App() {
     //   </Router>
     // </ThemeProvider>
     // <Login />
-    <>
-    {/* <Profile  /> */}
+    <SignUp1 />
+    // <>
+    // {/* <Profile  /> */}
 
-    <AddToCart />
-    <div>
-      <h1>Search Example</h1>
-      <SearchComponent data={allData} onSearch={handleSearch} />
+    // <AddToCart />
+    // <div>
+    //   <h1>Search Example</h1>
+    //   <SearchComponent data={allData} onSearch={handleSearch} />
       
-      {/* Render search results */}
-      <ul>
-        {searchResults.map((item, index) => (
-          <li key={index}>{item.name}</li>
-        ))}
-      </ul>
-    </div>
-    <Reviews/>
-    </>
+    //   {/* Render search results */}
+    //   <ul>
+    //     {searchResults.map((item, index) => (
+    //       <li key={index}>{item.name}</li>
+    //     ))}
+    //   </ul>
+    // </div>
+    // <Reviews/>
+    // </>
     
   );
 }

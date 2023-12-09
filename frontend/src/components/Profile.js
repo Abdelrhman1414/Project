@@ -1,77 +1,113 @@
+// Profile.js
+
 import React, { useState } from 'react';
-import './SignUp.css'; // Import your CSS file
+import './Profile.css'; // Import the CSS file for styling
 
-const SignUp1 = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-  });
+const Profile = () => {
+  const [balance, setBalance] = useState(1000);
+  const [editMode, setEditMode] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [image, setImage] = useState('path/to/default-image.jpg'); // Set a default image path
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const handleEditClick = () => {
+    setEditMode(true);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // You can send the form data to your backend for user registration
+  const handleSaveClick = () => {
+    // Save updated user data to the backend
+    setEditMode(false);
+  };
+
+  const handleImageChange = (e) => {
+    // Handle image change and set the image path
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleAddImageButtonClick = () => {
+    // Trigger the file input when the "Add Image" button is clicked
+    document.getElementById('imageInput').click();
   };
 
   return (
-    <div className="signup-container">
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          First Name:
-          <input
-            type="text"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            required
+    <div className="profile-container">
+      <h2>Profile</h2>
+      <div className="profile-image-container">
+        <img src={image} alt="Profile" className="profile-image" />
+        {editMode && (
+          <div>
+            <button className="add-image-button" onClick={handleAddImageButtonClick}>
+              Add Image
+            </button>
+            <input
+              type="file"
+              id="imageInput"
+              accept="image/*"
+              onChange={handleImageChange}
+              style={{ display: 'none' }}
+            />
+          </div>
+        )}
+      </div>
+      <p>
+        <strong>Name:</strong>{' '}
+        {editMode ? (
+          <textarea
+            className="edit-textarea"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
-        </label>
-        <br />
-        <label>
-          Last Name:
-          <input
-            type="text"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            required
+        ) : (
+          name
+        )}
+      </p>
+      <p>
+        <strong>Email:</strong>{' '}
+        {editMode ? (
+          <textarea
+            className="edit-textarea"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-        </label>
-        <br />
-        <label>
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
+        ) : (
+          email
+        )}
+      </p>
+      <p>
+        <strong>Balance:</strong> $
+        {editMode ? (
+          <textarea
+            className="edit-textarea"
+            value={balance}
+            onChange={(e) => setBalance(parseFloat(e.target.value) || 0)}
           />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <br />
-        <button type="submit">Sign Up</button>
-      </form>
+        ) : (
+          balance
+        )}
+      </p>
+      {editMode ? (
+        <>
+          <button className="save-button" onClick={handleSaveClick}>
+            Save
+          </button>
+          <button className="edit-button" onClick={handleEditClick}>
+            Cancel
+          </button>
+        </>
+      ) : (
+        <button className="edit-button" onClick={handleEditClick}>
+          Edit
+        </button>
+      )}
     </div>
   );
 };
 
-export default SignUp1;
+export default Profile;

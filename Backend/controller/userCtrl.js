@@ -57,6 +57,7 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
   });
 
   const getallUser = asyncHandler(async (req, res) => {
+    
     try {
       const getUsers = await User.find();
       res.json(getUsers);
@@ -67,7 +68,7 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
 
   const getaUser = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    
+  
   
     try {
       const getaUser = await User.findById(id);
@@ -118,42 +119,7 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
       throw new Error(error);
     }
   });
-  const userCart = asyncHandler(async(req,res) =>{
-    const { cart } = req.body;
-    const { id } = req.user;
-    try{
-    let products = [];
-    const user = await User.findById(id);
-    const haveProduct = await Cart.findOne({orderby: user.id});
-    if(haveProduct){
-      res.send("u already added this mobile!")
-    }
-    else{
-      for( let i=0;i<cart.length;i++){
-        let object={};
-        object.Product=cart[i].id;
-        object.count=cart[i].count;
-        let getPrice = await Product.findById(cart[i].id).select("price").exec();
-        object.price = getPrice.price;
-        products.push(object);
-      }
-      let cartPrice =0;
-      for(let i=0;i<products.length;i++){
-      cartPrice = cartPrice + products[i].price * products[i].count; }
-      let newCart = await new Cart({
-        products,
-        cartPrice,
-        orderby: user?.id,
-      }).save();
-      res.status(200).json(newCart);
-    }
-    }
-    catch(error){
-      throw new Error(error);
-    }
-  
 
-  });
   const createOrder = asyncHandler(async(req,res) => {
   const {cashOndelv} = req.body;
   const {id} =req.user;
@@ -212,5 +178,72 @@ catch(error){
   }
 
 
+  const userCart = asyncHandler(async (req, res) => {
+    const { cart } = req.body;
+    const { id } = req.user;
+    try {
+      let products = [];
+      const user = await User.findById(id);
+      // check if user already have product in cart
+      const alreadyExistCart = await Cart.findOne({ orderby: user.id });
+      if (alreadyExistCart) {
+        alreadyExistCart.remove();
+      }
+      for (let i = 0; i < cart.length; i++) {
+        let object = {};
+        object.product = cart[i].id;
+        object.countInst = cart[i].countInst;
+       
+        let getPrice = await Product.findById(cart[i].id).select("price").exec();
+        object.price = getPrice.price;
+        products.push(object);
+      }
+      let cartTotal = 0;
+      for (let i = 0; i < products.length; i++) {
+        cartTotal = cartTotal + products[i].price * products[i].count;
+      }
+      let newCart = await new Cart({
+        products,
+        cartTotal,
+        orderby: user?.id,
+      }).save();
+      res.json(newCart);
+    }
+    catch(error){
+      throw new Error(error);
+    }
+  
+  })
 
-module.exports={createUser,loginUserCtrl,getallUser,getaUser,deleteaUser,updatedUser,userCart,createOrder,getOrders};
+  const getUserCart= asyncHandler(async(req, res)=>{
+const {id}=req.user;
+try{
+const cart=await Cart.findOne({orderby:id})
+
+res.json(cart);
+}
+catch(error){
+  throw new Error(error);
+}
+  }
+
+  );
+
+  const emptyCart = asyncHandler(async (req, res) => {
+    const { id } = req.user;
+  
+    try {
+      const user = await User.findById(id);
+      const cart = await Cart.findOneAndRemove({ orderby: user.id });
+      res.json(cart);
+    } catch (error) {
+      throw new Error(error);
+    }
+  });
+
+
+
+
+  
+
+module.exports={createUser,loginUserCtrl,getallUser,getaUser,deleteaUser,updatedUser,createOrder,getOrders,userCart,getUserCart,emptyCart};

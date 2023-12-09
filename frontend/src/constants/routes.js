@@ -1,9 +1,8 @@
-export const LANDING = '/';
-export const SIGN_UP = '/signup';
-export const SIGN_IN = '/signin';
-export const Users = '/users';
-export const HOME = '/home';
-export const ACCOUNT = '/account';
-export const ADMIN = '/admin';
-export const ADMIN_DETAILS = '/admin/:id';
-export const PASSWORD_FORGET = '/pw-forget';
+export const  Product ='/Product'
+export const  Home ='/'
+export const  Item='/products/:itemId'
+export const  About='/About'
+export const  ContactUs='/ContactUs'
+export const Admin = '/admin';
+export const User = '/user';
+export const Cart ='/cart';

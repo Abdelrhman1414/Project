@@ -1,0 +1,55 @@
+/* HomePage.css */
+
+.home-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .welcome {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .phone-list-home {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Distribute cards evenly */
+  }
+  
+  .product-card {
+     /* width: calc(33.33% - 20px); Calculate width to fit three cards beside each other with spacing  */
+    width: calc(20% - 20px);
+    margin: 10px; /* Adjust margin for spacing between cards */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  } 
+ 
+  
+  .product-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .product-card h2 {
+    font-size: 1.5rem;
+    margin-top: 10px;
+  }
+  
+  .product-card p {
+    margin: 10px 0;
+  }
+  
+  .product-card button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  

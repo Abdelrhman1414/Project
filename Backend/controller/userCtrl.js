@@ -57,6 +57,7 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
   });
 
   const getallUser = asyncHandler(async (req, res) => {
+    
     try {
       const getUsers = await User.find();
       res.json(getUsers);
@@ -67,7 +68,7 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
 
   const getaUser = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    
+  
   
     try {
       const getaUser = await User.findById(id);
@@ -155,6 +156,9 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
         orderby: user?.id,
       }).save();
       res.json(newCart);
+
+
+
     
     /*
   
@@ -192,6 +196,36 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
   
   })
 
+  const getUserCart= asyncHandler(async(req, res)=>{
+const {id}=req.user;
+try{
+const cart=await Cart.findOne({orderby:id})
+
+res.json(cart);
+}
+catch(error){
+  throw new Error(error);
+}
+
+  }
+
+  );
+
+  const emptyCart = asyncHandler(async (req, res) => {
+    const { id } = req.user;
+  
+    try {
+      const user = await User.findById(id);
+      const cart = await Cart.findOneAndRemove({ orderby: user.id });
+      res.json(cart);
+    } catch (error) {
+      throw new Error(error);
+    }
+  });
+
+
+
+
   
 
-module.exports={createUser,loginUserCtrl,getallUser,getaUser,deleteaUser,updatedUser,userCart};
+module.exports={createUser,loginUserCtrl,getallUser,getaUser,deleteaUser,updatedUser,userCart,getUserCart,emptyCart};

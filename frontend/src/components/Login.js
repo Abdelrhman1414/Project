@@ -19,7 +19,6 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your login logic here (e.g., make an API call to validate credentials)
     console.log('Email:', email);
     console.log('Password:', password);
     console.log('Remember Me:', rememberMe);
@@ -74,11 +73,6 @@ const Login = () => {
         </div>
       </form>
       <div style={styles.bottomLinks}>
-        {/* <p>
-          <a href="#forgot-password" style={styles.link}>
-            Forgot password?
-          </a>
-        </p> */}
         <p>
           Don't have an account?{' '}
           <a href="#sign-up" style={styles.link}>

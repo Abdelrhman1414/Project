@@ -6,15 +6,12 @@ const router=express.Router();
 
 router.post('/register',createUser);
 router.post('/login',loginUserCtrl);
-
 router.get('/allusers',authMiddleware,isAdmin,getallUser);
+router.get("/cart", authMiddleware, getUserCart);
+
+router.get("/:id", authMiddleware, isAdmin, getaUser);
 router.delete('/empty-cart',authMiddleware,emptyCart);
 router.delete('/:id',authMiddleware,isAdmin,deleteaUser);
 router.put('/edituser',authMiddleware,updatedUser);
-
-router.get("/cart",authMiddleware,getUserCart);
-
-router.post("/cart", authMiddleware,userCart);
-router.get('/:id',authMiddleware,isAdmin,getaUser);
-
+router.post("/cart", authMiddleware, userCart);
 module.exports=router;

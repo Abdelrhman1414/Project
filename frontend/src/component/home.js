@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import NavigationBar from './NavigationBar';
 import Icon from "./Icon"
+// import './HomePage.css';
 
 const HomePage = () => {
   const phonesData = 
@@ -20,13 +21,12 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
-      <Icon/>
       <NavigationBar links={navLinks}/>
     <h1 class="welcome">Welcome to Our Shop</h1>
 
       <div className="phone-list-home">
         {phones.map((phone) => (
-          <div key={phone.id} className="product-card">
+          <div key={phone.id} className="product-card-list">
             <img src={phone.images} alt={phone.name} />
             <h2>{phone.title}</h2>
             <p> {phone.description}</p>

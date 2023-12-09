@@ -3,7 +3,7 @@ const User=require('../models/userModel');
 const Product = require("../models/productmodel")
 const Order = require("../models/orderModel");
 const Cart = require("../models/cartmodel");
-
+const uniqid= require('uniqid');
 const asyncHandler=require('express-async-handler')
 
 
@@ -119,6 +119,48 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
       throw new Error(error);
     }
   });
+
+  const createOrder = asyncHandler(async(req,res) => {
+  const {cashOndelv} = req.body;
+  const {id} =req.user;
+  try{
+  if(!cashOndelv){
+  throw new Error("cant create cash order")
+  }
+  else{
+    const user = await User.findById(id);
+    let userCart = await Cart.findOne({orderby: user.id});
+    let totalAmount=0;
+    totalAmount= userCart.cartPrice;
+    let newOrder = await new Order({
+      products: userCart.products,
+      paymentIntent:{
+        id:uniqid(),
+        method:"CashOndelv",
+        amount:totalAmount,
+        status:"Cash on Delivery",
+        currency:"usd"
+      },
+      orderby:user.id,
+      orderStatus:"Cash on Delivery"
+    }).save();
+    let update = userCart.products.map((item)=>{
+      return{
+        updateProduct:{
+          filter:{id:item.product.id},
+          update:{$inc: {count:-item.count}}
+        },
+      };
+    });
+    const updated = await Product.bulkWrite(update,{});
+    res.json({message:Done});
+  }
+}
+catch(error){
+  throw new Error(error)
+}
+
+  })
 
   function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;

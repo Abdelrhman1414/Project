@@ -13,7 +13,8 @@ const navLinks = [
     return (
       <div className="About-page">
         <NavigationBar links={navLinks}/>
-        <h1 className="ProductHead">Mobile Phones</h1>
+        {/* <h1 className="ProductHead">Mobile Phones</h1> */}
+        <p className='about'>Our mobile phone shop , You can get any phone you want.</p>
       </div>
     );
   };

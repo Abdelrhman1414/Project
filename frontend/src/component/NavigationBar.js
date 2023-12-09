@@ -1,9 +1,10 @@
 import React from 'react';
 import Icon from './Icon';
-
+import SearchComponent from './SearchComponent';
 const NavigationBar = ({ links }) => {
   return (
     <>
+
     <nav>
       <div className="links">
         <Icon />
@@ -13,6 +14,7 @@ const NavigationBar = ({ links }) => {
           </a>
         ))}
       </div>
+      {/* <SearchComponent/> */}
     </nav>
     </>
   );

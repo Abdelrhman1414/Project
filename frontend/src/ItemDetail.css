@@ -5,7 +5,7 @@
     margin: 0 auto;
     padding: 20px;
     text-align: center;
-    background-color: #72797acb;
+    background-color:#5C8374;
   }
   
   .item-detail-title {
@@ -23,14 +23,14 @@
   .item-detail-description {
     font-size: 1rem;
     margin-bottom: 20px;
-    background-color: brown;
+    background-color: #9EC8B9;
   }
   
   .item-detail-price {
     font-weight: bold;
     color: #007bff;
     margin-bottom: 20px;
-    background-color: darkslategray;
+    background-color: #9EC8B9;
   }
   
   .item-detail-add-button {

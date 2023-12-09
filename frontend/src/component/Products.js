@@ -1,12 +1,9 @@
-// Products.js
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import productsList from './ProductList';
 import NavigationBar from './NavigationBar';
 import Item from './Item';
-// import '../Products.css';
-
+import SearchComponent from './SearchComponent';
 const navLinks = [
   { text: 'Home ', url: '/' },
   { text: ' About ', url: '/About' },
@@ -25,6 +22,7 @@ const Products = () => {
   return (
     <div className="products-page">
       <NavigationBar links={navLinks} />
+      <SearchComponent/>
 
       <div className="content-container">
         <div className="product-list">
@@ -43,7 +41,6 @@ const Products = () => {
         </div>
       </div>
 
-      {/* Category Filter on the right side */}
       <div className="category-filter">
         <h2>Categories</h2>
         <ul>

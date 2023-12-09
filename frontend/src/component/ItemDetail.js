@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import productsList from './ProductList';
+import Reviews from './Reviews.js';
 const ItemDetail = () => {
   const { itemId } = useParams();
   const selectedItem = productsList.find((item) => item.id === parseInt(itemId, 10));
@@ -16,6 +17,7 @@ const ItemDetail = () => {
       <p className="item-detail-description">{selectedItem.description}</p>
       <p className="item-detail-price">Price: ${selectedItem.price}</p>
       <button className="item-detail-add-button">Add to Cart</button>
+      <Reviews/>
     </div>
   );
 };

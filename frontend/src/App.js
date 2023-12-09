@@ -9,10 +9,11 @@ import ItemDetail from './component/ItemDetail.js';
 import * as ROUTES from "./constants/routes"
 import './HomePage.css';
 import './ItemDetail.css';
+import './SearchComponent.css';
 import UserComponent from './component/UserComponent.js';
 import AdminComponent from './component/AdminComponent.js';
 import { BrowserRouter as Router, Routes, Route,Link,Switch } from "react-router-dom";
-
+import SearchComponent from './component/SearchComponent.js';
 
 const App = () => {
   return (

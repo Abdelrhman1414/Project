@@ -195,6 +195,16 @@ catch(error){
 }
 
   })
+  const getOrders = asyncHandler(async(req,res)=>{
+    const {id}=req.user;
+    try{
+      const userOrders = await Order.findOne({orderby:id});
+      res.json(userOrders);
+    }
+    catch(error){
+      throw new Error(error)
+    }
+  })
 
   function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
@@ -203,4 +213,4 @@ catch(error){
 
 
 
-module.exports={createUser,loginUserCtrl,getallUser,getaUser,deleteaUser,updatedUser,userCart,createOrder};
+module.exports={createUser,loginUserCtrl,getallUser,getaUser,deleteaUser,updatedUser,userCart,createOrder,getOrders};

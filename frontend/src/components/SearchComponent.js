@@ -4,12 +4,10 @@ const SearchComponent = ({ data, onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = () => {
-    // Perform search logic here (e.g., filter data based on searchTerm)
     const searchResults = data.filter(item =>
       item.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    // Pass the search results to the parent component
     onSearch(searchResults);
   };
 

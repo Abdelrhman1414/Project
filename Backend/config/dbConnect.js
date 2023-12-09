@@ -2,7 +2,7 @@ const { default: mongoose } = require("mongoose")
 
 const dbConnect = () =>{
 try{
-    const conn=mongoose.connect("mongodb://localhost:27017/lab3db");
+    const conn=mongoose.connect("mongodb://localhost:27017/Project");
 console.log("Database connected Succesfully")
 }
 

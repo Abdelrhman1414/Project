@@ -1,5 +1,9 @@
 const { generateToken } = require('../config/jwtToken');
 const User=require('../models/userModel');
+const Product = require("../models/productmodel")
+const Order = require("../models/orderModel");
+const Cart = require("../models/cartmodel");
+
 const asyncHandler=require('express-async-handler')
 
 
@@ -31,6 +35,8 @@ const createUser= asyncHandler (async(req,res)=>{
     const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
     return emailRegex.test(email);
   }
+
+
 
 const loginUserCtrl = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
@@ -119,5 +125,73 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
   }
 
 
+  const userCart = asyncHandler(async (req, res) => {
+    const { cart } = req.body;
+    const { id } = req.user;
+    try {
+      let products = [];
+      const user = await User.findById(id);
+      // check if user already have product in cart
+      const alreadyExistCart = await Cart.findOne({ orderby: user.id });
+      if (alreadyExistCart) {
+        alreadyExistCart.remove();
+      }
+      for (let i = 0; i < cart.length; i++) {
+        let object = {};
+        object.product = cart[i].id;
+        object.countInst = cart[i].countInst;
+       
+        let getPrice = await Product.findById(cart[i].id).select("price").exec();
+        object.price = getPrice.price;
+        products.push(object);
+      }
+      let cartTotal = 0;
+      for (let i = 0; i < products.length; i++) {
+        cartTotal = cartTotal + products[i].price * products[i].count;
+      }
+      let newCart = await new Cart({
+        products,
+        cartTotal,
+        orderby: user?.id,
+      }).save();
+      res.json(newCart);
+    
+    /*
+  
 
-module.exports={createUser,loginUserCtrl,getallUser,getaUser,deleteaUser,updatedUser};
+    let newOrder = await new Order({
+      products: userCart.products,
+      paymentIntent: {
+        method: "COD",
+        amount: finalAmout,
+        status: "Cash on Delivery",
+        created: Date.now(),
+        currency: "egp",
+      },
+      orderby: user.id,
+      orderStatus: "Cash on Delivery",
+    }).save();
+
+    let update = userCart.products.map((item) => {
+      return {
+        updateOne: {
+          filter: { id: item.product.id},
+          update: { $inc: { quantity: -item.count, sold: +item.count } },
+        },
+      };
+    });
+
+    const updated = await Product.bulkWrite(update, {});
+    res.json({ message: "success" });
+  }
+  */
+    }
+    catch(error){
+      throw new Error(error);
+    }
+  
+  })
+
+  
+
+module.exports={createUser,loginUserCtrl,getallUser,getaUser,deleteaUser,updatedUser,userCart};

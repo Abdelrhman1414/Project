@@ -1,6 +1,8 @@
 const { generateToken } = require('../config/jwtToken');
 const User=require('../models/userModel');
-const asyncHandler=require('express-async-handler')
+const Product=require('../models/productmodel');
+const Cart = require('../models/cartmodel');
+const asyncHandler=require('express-async-handler');
 
 
 const createUser= asyncHandler (async(req,res)=>{
@@ -112,6 +114,42 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
       throw new Error(error);
     }
   });
+  const userCart = asyncHandler(async(req,res) =>{
+    const { cart } = req.body;
+    const { id } = req.user;
+    try{
+    let products = [];
+    const user = await User.findById(id);
+    const haveProduct = await Cart.findOne({orderby: user.id});
+    if(haveProduct){
+      res.send("u already added this mobile!")
+    }
+    else{
+      for( let i=0;i<cart.length;i++){
+        let object={};
+        object.Product=cart[i].id;
+        object.count=cart[i].count;
+        let getPrice = await Product.findById(cart[i].id).select("price").exec();
+        object.price = getPrice.price;
+        products.push(object);
+      }
+      let cartTotal =0;
+      for(let i=0;i<products.length;i++){
+      cartTotal = cartTotal + products[i].price * products[i].count; }
+      let newCart = await new Cart({
+        products,
+        cartTotal,
+        orderby: user?.id,
+      }).save();
+      res.status(200).json(newCart);
+    }
+    }
+    catch(error){
+      throw new Error(error);
+    }
+  
+
+  })
 
   function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
@@ -120,4 +158,4 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
 
 
 
-module.exports={createUser,loginUserCtrl,getallUser,getaUser,deleteaUser,updatedUser};
+module.exports={createUser,loginUserCtrl,getallUser,getaUser,deleteaUser,updatedUser,userCart};

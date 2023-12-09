@@ -1,8 +1,11 @@
-import React from 'react';
+// Products.js
+
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import productsList from './ProductList';
 import NavigationBar from './NavigationBar';
-import Item from './item';
+import Item from './Item';
+// import '../Products.css';
 
 const navLinks = [
   { text: 'Home ', url: '/' },
@@ -11,16 +14,45 @@ const navLinks = [
 ];
 
 const Products = () => {
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const uniqueCategories = ['All', ...new Set(productsList.map(product => product.category))];
+
   return (
     <div className="products-page">
-      <NavigationBar links={navLinks}/>
-      <h1 className="ProductHead">Mobile Phones</h1>
-      <div className="product-list">
-        {productsList.map((product) => (
-          <Link key={product.id} to={`/products/${product.id}`}>
-            <Item item={product} />
-          </Link>
-        ))}
+      <NavigationBar links={navLinks} />
+
+      <div className="content-container">
+        <div className="product-list">
+          <h1 className="ProductHead">Mobile Phones</h1>
+          <div className="card-container">
+            {productsList
+              .filter(product => selectedCategory === 'All' || product.category === selectedCategory)
+              .map((product) => (
+                <Link key={product.id} to={`/products/${product.id}`} className="product-card-link">
+                  <div className="product-card">
+                    <Item item={product} />
+                  </div>
+                </Link>
+              ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Category Filter on the right side */}
+      <div className="category-filter">
+        <h2>Categories</h2>
+        <ul>
+          {uniqueCategories.map(category => (
+            <li key={category} onClick={() => handleCategoryChange(category)}>
+              {category}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
